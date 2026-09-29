@@ -3,10 +3,13 @@ from sqlalchemy import create_engine
 import urllib
 
 # 1. Cargamos el CSV crudo a la memoria de Pandas
-df_operaciones = pd.read_csv('data/raw/raw_support_operations_data.csv')
+# Lo que tienes actualmente (apunta a la carpeta):
+# Lo que debes poner (apunta al archivo exacto):
+df_operaciones = pd.read_csv(
+    r'C:\Users\gerso\OneDrive\Documentos\SQL_Master\ETL_practice\contact_center_analysis\data\raw\raw_support_operations_data.csv')
 
 # 2. Configuración de la conexión a SQL Server
-nombre_servidor = 'GAV\SQLEXPRESS'  # Ejemplo: 'localhost' o '.\SQLEXPRESS'
+nombre_servidor = r'GAV\SQLEXPRESS'  # Ejemplo: 'localhost' o '.\SQLEXPRESS'
 nombre_bd = 'ContactsDB'
 
 print("Conectando a SQL Server...")
