@@ -1,0 +1,29 @@
+WITH calculated_cte AS
+(
+SELECT
+    model_version AS model_version,
+    SUM
+    (CASE
+        WHEN
+            feedback = 'thumbs_up' THEN 1
+        ELSE 0
+     END
+    ) AS thumbs_up_counting,
+    SUM
+    (CASE
+        WHEN
+            feedback = 'thumbs_up' OR feedback = 'thumbs_down' THEN 1
+        ELSE 0
+     END
+    ) AS total_thumbs_counting
+FROM
+    ai_response_feedback
+WHERE
+    feedback IS NOT NULL
+GROUP BY
+    model_version
+)
+SELECT
+    model_version
+FROM
+    calculated_cte
